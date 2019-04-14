@@ -4,3 +4,4 @@ main = mn.Main()
 main.learn()
 main.save()
 main.show()
+#some comment
