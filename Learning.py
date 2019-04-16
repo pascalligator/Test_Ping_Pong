@@ -14,10 +14,16 @@ class Spezies():
     def evaluate(self):
         for i in range(2):
             for j in range(len(self.both_populations[i])):
-                for l in range(len(self.both_populations[abs(i - 1)])):
+                for l in range(len(self.both_populations[1 - i])):
                     self.index_one = j
                     self.index_two = l
                     self.play_one_ball(ball_start_direction = i * 2 - 1)
+        #debugging
+        for i in range(2):
+            fitness = []
+            for j in range(len(self.population_one)):
+                fitness.append(self.both_populations[i][j].fitness)
+            print(fitness)
     def play_one_ball(self, ball_start_direction, show = False):
         game = gm.Game()
         if show == True:
@@ -27,7 +33,8 @@ class Spezies():
         game.ball.vel.y = uniform(-game.ball.max_vel.y, game.ball.max_vel.y)
         while game.ball.vel.y < 0.1 and game.ball.vel.y > -0.1:
             game.ball.vel.y = uniform(-game.ball.max_vel.y, game.ball.max_vel.y)
-        while True:
+        play = True
+        while play == True:
             game.convert_outputs(self.population_one[self.index_one].feedforward(game.get_inputs()), \
                 self.population_two[self.index_two].feedforward(game.get_inputs()))
             game.update()

@@ -1,6 +1,6 @@
 from Matrix import *
+from random import uniform
 import Network_Vars as ntw_vars
-import Mutate_Number as mt
 import Sigmoid
 class Network():
     def __init__(self):
@@ -21,7 +21,9 @@ class Network():
         return np.ndarray.tolist(new_neurons)[0]
     def mutate(self):
         for i in range(len(self.weights)):
-            mt.mutate_number(self.weights[i])
-            mt.mutate_number(self.biases[i])
+            for j in range(len(self.weights[i])):
+                self.weights[i][j] += uniform(-ntw_vars.mutation_size, ntw_vars.mutation_size)
+        for i in range(len(self.biases)):
+            self.biases[i] += uniform(-ntw_vars.mutation_size, ntw_vars.mutation_size)
 
 

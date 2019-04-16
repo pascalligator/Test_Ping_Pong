@@ -14,19 +14,24 @@ class Player():
             if self.overlap(other) == True:
                 self.pos.sub(self.vel)
                 if self.name == "ball":
+                    self.vel.small_change(change_size)
                     if other.name == "player":
                         self.vel.x *= -1
                         self.update()
                         if self.overlap(other) == True:
                             self.vel.y *= -1
                             self.update()
+                            return None
+                        return None
                     elif other.name == "bound_top_bottom":
                         self.vel.y *= -1
+                        return None
                     elif other.name == "bound_left":
                         return False
-                    else:
+                    elif other.name == "bound_right":
                         return True
-                    self.vel.small_change(change_size)
+                    else:
+                        return None
     def overlap(self, other):
         if self.pos.x < other.pos.x + other.size.x and self.pos.x + self.size.x > other.pos.x:
             if self.pos.y < other.pos.y + other.size.y and self.pos.y + self.size.y > other.pos.y:

@@ -1,4 +1,4 @@
-population_size = 30
+population_size = 10
 true_copies = int(population_size * 0.2)
 mutated_copies = int(population_size * 0.4)
 added_randoms = population_size - true_copies - mutated_copies
