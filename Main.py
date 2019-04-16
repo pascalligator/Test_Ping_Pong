@@ -21,7 +21,7 @@ class Main():
                 dif = sum([x.fitness for x in self.spezies.population_one]) - sum([x.fitness for x in self.spezies.population_two])
                 print(dif)
                 self.spezies.new_generation()
-            self.spezies.tranee = 0
+            self.spezies.trainee = 0
     def save(self):
         pkl.dump(self.spezies, open( "save.p", "wb" ))
     def load(self):
