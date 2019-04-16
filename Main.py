@@ -7,8 +7,19 @@ class Main():
     def learn(self):
         for i in range(lng.lng_vars.generations):
             print(i)
-            self.spezies.evaluate()
-            self.spezies.new_generation()
+            dif = 0
+            while dif <= 0:
+                self.spezies.evaluate()
+                dif = sum([x.fitness for x in self.spezies.population_one]) - sum([x.fitness for x in self.spezies.population_two])
+                self.spezies.new_generation()
+                print("left player sucks")
+            self.spezies.trainee = 1
+            while dif >= 0:
+                self.spezies.evaluate()
+                dif = sum([x.fitness for x in self.spezies.population_one]) - sum([x.fitness for x in self.spezies.population_two])
+                self.spezies.new_generation()
+                print("right player sucks")
+            self.spezies.tranee = 0
     def save(self):
         pkl.dump(self.spezies, open( "save.p", "wb" ))
     def load(self):
