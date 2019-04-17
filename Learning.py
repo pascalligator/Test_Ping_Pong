@@ -13,12 +13,13 @@ class Spezies():
         self.index_two = 0
         self.trainee = 0
     def evaluate(self):
-        for i in range(2):
-            for j in range(len(self.both_populations[i])):
-                for l in range(len(self.both_populations[1 - i])):
-                    self.index_one = j
-                    self.index_two = l
-                    self.play_one_ball(ball_start_direction = i * 2 - 1, show = False)
+        for b in range(lng_vars.evaluation_reps):
+            for i in range(2):
+                for j in range(len(self.both_populations[i])):
+                    for l in range(len(self.both_populations[1 - i])):
+                        self.index_one = j
+                        self.index_two = l
+                        self.play_one_ball(ball_start_direction = i * 2 - 1, show = False)
     def play_one_ball(self, ball_start_direction, show = False):
         game = gm.Game()
         if show == True:
@@ -64,4 +65,3 @@ class Spezies():
         for i in range(2):
             for j in range(len(self.both_populations[i])):
                 self.both_populations[i][j].fitness = 0
-        
